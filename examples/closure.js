@@ -1,10 +1,15 @@
-function foo() {
-  var a = 2;
-  function bar() {
+var foo = function() {
+  var a = 1;
+  function bar () {
     console.log(a);
   }
-  return bar;
+  
+  baz(bar);
 }
 
-var baz = foo();
-baz();
+
+function baz(fn) {
+  console.log('I am in baz but have access to foos scope! CLOSURE!');
+  fn();
+};
+foo();

@@ -1,14 +1,22 @@
-function Foo () {
-  console.log('vahid');
-  var baz = function (){
-    console.log('baz called');
-  }
-  var a = 2;
+"use strict";
+
+
+var foo = {
+  a: 2
 }
 
-//var bar = new Foo();
-var bar = Object.create(Foo);
+// when adding properties like this
+// writable is defaulted to false.
+Object.defineProperty(foo, 'b', {
+  value: 'up up',
+  writable: true
+});
+
+var bar = Object.create(foo);
+
+console.log('foo.b: ', foo.b);
 
 console.log('bar.prot: ', Object.getPrototypeOf(bar));
-//bar.a = 3;
-console.log(bar.a);
+bar.b = 'shadow';
+console.log('bar.b is shadowed: ', bar.b);
+console.log('foo.b after shadowing bar.b: ', foo.b);
